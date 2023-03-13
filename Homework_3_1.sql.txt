@@ -1,0 +1,57 @@
+Last login: Mon Mar 13 22:42:22 on ttys000
+/Library/PostgreSQL/14/scripts/runpsql.sh; exit
+katiavasileva@iMac-Katia ~ % /Library/PostgreSQL/14/scripts/runpsql.sh; exit
+Server [localhost]: 
+Database [postgres]: 
+Port [5432]: 
+Username [postgres]: 
+Password for user postgres: 
+psql (14.7)
+Type "help" for help.
+
+postgres=# CREATE DATABASE skypro;
+CREATE DATABASE
+postgres=# \c skypro
+You are now connected to database "skypro" as user "postgres".
+skypro=# CREATE TABLE employee(
+skypro(# id BIGSERIAL NOT NULL PRIMARY KEY,
+skypro(# first_name VARCHAR(50) NOT NULL,
+skypro(# last_name VARCHAR(50) NOT NULL,
+skypro(# gender VARCHAR(6) NOT NULL,
+skypro(# age INT NOT NULL
+skypro(# );
+CREATE TABLE
+skypro=# INSERT INTO employee(first_name, last_name, gender, age)
+skypro-# VALUES
+skypro-# ('John', 'Smith', 'male', 45),
+skypro-# ('Mary', 'Denver', 'female', 32),
+skypro-# ('Peter', 'Davis', 'male', 28);
+INSERT 0 3
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age 
+----+------------+-----------+--------+-----
+  1 | John       | Smith     | male   |  45
+  2 | Mary       | Denver    | female |  32
+  3 | Peter      | Davis     | male   |  28
+(3 rows)
+
+skypro=# UPDATE employee SET first_name = 'Penny', last_name = 'Brooks', gender = 'female', age = 26 WHERE id = 3;
+UPDATE 1
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age 
+----+------------+-----------+--------+-----
+  1 | John       | Smith     | male   |  45
+  2 | Mary       | Denver    | female |  32
+  3 | Penny      | Brooks    | female |  26
+(3 rows)
+
+skypro=# DELETE FROM employee WHERE id = 2;
+DELETE 1
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age 
+----+------------+-----------+--------+-----
+  1 | John       | Smith     | male   |  45
+  3 | Penny      | Brooks    | female |  26
+(2 rows)
+
+skypro=# 
